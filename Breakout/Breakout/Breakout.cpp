@@ -1,3 +1,4 @@
+#pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stb/stb_image.h>
@@ -13,6 +14,7 @@
 #include "Game.h"
 #include "SpriteRenderer.h"
 #include "Breakout.h"
+#include "ResourceManager.h"
 
 void KeyPressedCallBack(GLFWwindow* window, int key, int scanCode, int action, int mode);
 
@@ -24,7 +26,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 800, "OpenGl window", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(800, 800, "Breakout", NULL, NULL);
 
     if (window == NULL)
     {
@@ -36,40 +38,37 @@ int main()
     gladLoadGL();
     glfwSetKeyCallback(window, KeyPressedCallBack);
 
-    glViewport(0, 0, 700, 700);
-
-    Shader shaderProgram{};
-    shaderProgram.Compile("sprite_transform.vert", "sprite.frag");
+    glViewport(0, 0, 800, 800);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC1_ALPHA);
  
-       
-    Texture GameTexture("img.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-    GameTexture.texUnit(shaderProgram, "tex0", 0);
-    SpriteRenderer* Renderer = new SpriteRenderer(shaderProgram);
-    Game testGame(800, 800, Renderer);
+    Game Breakout(800, 800);
     
-    testGame.Init(shaderProgram);
+    Breakout.Init();
+
+    // deltaTime variables
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
 
     while (!glfwWindowShouldClose(window))
     {
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
         glfwPollEvents();
 
-        // tell opengl which shader program we want to use
-        shaderProgram.Activate();
-        
+        Breakout.Update(deltaTime);
 
         // Render
-        glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-        testGame.Render(GameTexture);        
-        
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);                    
+        Breakout.Render();        
+
         glfwSwapBuffers(window);
-        
     }
 
-    GameTexture.Delete();
-    shaderProgram.Delete();
 
-    glfwDestroyWindow(window);
+    ResourceManager::Clear();    
     glfwTerminate();
     return 0;
 }

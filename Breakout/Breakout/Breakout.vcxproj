@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>E:\Dev\OpenGL\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>E:\Dev\OpenGL\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Dev\OpenGLPractice\OpenGL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Dev\OpenGLPractice\OpenGL\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -108,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,7 +136,10 @@
     <ClCompile Include="Breakout.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameLevel.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Stb.cpp" />
@@ -152,6 +156,9 @@
   <ItemGroup>
     <ClInclude Include="EBO.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameLevel.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture.h" />
@@ -159,8 +166,15 @@
     <ClInclude Include="VBO.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="background.jpg" />
+    <Image Include="block.png" />
+    <Image Include="block_solid.png" />
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png" />
+    <Image Include="C:\Users\Artyom\OneDrive\Pictures\smile_bogdan.jpg" />
     <Image Include="Sonic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Standard.lvl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

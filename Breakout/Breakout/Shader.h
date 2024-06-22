@@ -7,10 +7,12 @@
 class Shader
 {
 public:
-	Shader() { } 
+	Shader() = default;
 	void Compile(const char* vertexShaderFile, const char* fragmentShaderFile);
+	void Compile(const char* vertexSource, const char* fragmentSource,
+		const char* geometrySource);
 
-	void Activate();
+	Shader& Use();
 	void Delete();
 	void SetMatrix4(const char* modelName, glm::mat4& model);
 	void SetVector3f(const char* colorName, glm::vec3& color);

@@ -19,6 +19,9 @@
     <Filter Include="Resource Files\Textures">
       <UniqueIdentifier>{237c899a-b481-4502-bd8e-805f14b5bc28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Levels">
+      <UniqueIdentifier>{4ef406f5-3892-4a6f-a4f0-4de3365ec390}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Breakout.cpp">
@@ -49,6 +52,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLevel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -88,6 +100,15 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GameLevel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png">
@@ -96,5 +117,22 @@
     <Image Include="Sonic.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+    <Image Include="C:\Users\Artyom\OneDrive\Pictures\smile_bogdan.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="block.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="block_solid.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="background.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Standard.lvl">
+      <Filter>Resource Files\Levels</Filter>
+    </Text>
   </ItemGroup>
 </Project>

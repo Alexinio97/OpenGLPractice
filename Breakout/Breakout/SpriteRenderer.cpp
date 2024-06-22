@@ -1,4 +1,3 @@
-
 #include "SpriteRenderer.h"
 
 SpriteRenderer::SpriteRenderer(Shader& shader)
@@ -15,7 +14,7 @@ SpriteRenderer::~SpriteRenderer()
 void SpriteRenderer::DrawSprite(Texture& texture, glm::vec2 position,
     glm::vec2 size, float rotate, glm::vec3 color)
 {
-    m_shader.Activate();
+    m_shader.Use();
 
     // initialize to identity matrix so it won't be null ( 0 )
     glm::mat4 model = glm::mat4(1.0f);
