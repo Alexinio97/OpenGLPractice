@@ -27,14 +27,14 @@ public:
 public:
 	GLuint ID;
 	GLenum type;
-	Texture() = default;
+	Texture();
 	Texture(const char* image, GLenum texType, GLenum slot, GLenum format, GLenum pixelType);
 
 	void Generate(unsigned int width, unsigned int height, unsigned char* data);
 	// Assigns a texture unit to a texture
 	void texUnit(Shader& shader, const char* uniform, GLuint unit);
 	// Binds a texture
-	void Bind();
+	void Bind() const;
 	// Unbinds a texture
 	void Unbind();
 	// Deletes a texture

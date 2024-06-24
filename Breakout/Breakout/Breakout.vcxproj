@@ -151,7 +151,7 @@
     <None Include="default.frag" />
     <None Include="default.vert" />
     <None Include="sprite.frag" />
-    <None Include="sprite_transform.vert" />
+    <None Include="sprite.vs" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EBO.h" />
@@ -170,8 +170,6 @@
     <Image Include="block.png" />
     <Image Include="block_solid.png" />
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png" />
-    <Image Include="C:\Users\Artyom\OneDrive\Pictures\smile_bogdan.jpg" />
-    <Image Include="Sonic.png" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Standard.lvl" />

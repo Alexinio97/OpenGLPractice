@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 
+void checkGLError(const std::string& location);
 
 std::map<std::string, Shader> ResourceManager::Shaders;
 std::map<std::string, Texture> ResourceManager::Textures;
@@ -13,7 +14,7 @@ Shader ResourceManager::LoadShader(const char* vShaderFile, const char* fShaderF
     return Shaders[name];
 }
 
-Shader& ResourceManager::GetShader(std::string name)
+Shader ResourceManager::GetShader(std::string name)
 {
     return Shaders[name];
 }
@@ -24,16 +25,16 @@ Texture ResourceManager::LoadTexture(const char* file, bool alpha, std::string n
     return Textures[name];
 }
 
-Texture& ResourceManager::GetTexture(std::string name)
+Texture ResourceManager::GetTexture(std::string name)
 {
     return Textures[name];
 }
 
 void ResourceManager::Clear()
 {
-    for (auto shader : Shaders)
+    for (auto& shader : Shaders)
         glDeleteProgram(shader.second.ShaderProgramId);
-    for (auto texture : Textures)
+    for (auto& texture : Textures)
         glDeleteTextures(1, &texture.second.ID);
 }
 
@@ -78,7 +79,7 @@ Shader ResourceManager::loadShaderFromFile(const char* vShaderFile, const char* 
     const char* fShaderCode = fragmentCode.c_str();
     const char* gShaderCode = geometryCode.c_str();
 
-    Shader shader;
+    Shader shader{};
     shader.Compile(vShaderCode, fShaderCode,
         gShaderFile != nullptr ? gShaderCode : nullptr);
     return shader;
@@ -92,11 +93,17 @@ Texture ResourceManager::loadTextureFromFile(const char* file, bool alpha)
         texture.Internal_Format = GL_RGBA;
         texture.Image_Format = GL_RGBA;
     }
-
+    
     int width, height, nrChannels;
     unsigned char* data = stbi_load(file, &width, &height, &nrChannels, 0);
-
-    texture.Generate(width, height, data);
+    if (data) {
+        std::cout << "Loaded image: " << file << ", Width: " << width << ", Height: " << height << std::endl;
+    }
+    else {
+        std::cerr << "Failed to load image: " << file << std::endl;
+    }
+    checkGLError("glBindTexture in Generate");
+    texture.Generate(width, height, data);    
     stbi_image_free(data);
     return texture;
 }

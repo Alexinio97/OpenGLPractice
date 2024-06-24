@@ -1,4 +1,7 @@
 #include "SpriteRenderer.h"
+#include <iostream>
+
+void checkGLError();
 
 SpriteRenderer::SpriteRenderer(Shader& shader)
 {
@@ -28,13 +31,13 @@ void SpriteRenderer::DrawSprite(Texture& texture, glm::vec2 position,
     model = glm::scale(model, glm::vec3(size, 1.0f));
 
     m_shader.SetMatrix4("model", model);
-    m_shader.SetVector3f("spriteColor", color);
-
-    glActiveTexture(GL_TEXTURE0);
+    m_shader.SetVector3f("spriteColor", color);    
+    glActiveTexture(GL_TEXTURE0);    
     texture.Bind();
 
     glBindVertexArray(m_quadVAO);
     glDrawArrays(GL_TRIANGLES, 0, 6);
+
     glBindVertexArray(0);
 }
 
@@ -54,13 +57,15 @@ void SpriteRenderer::initRenderData()
 
     glGenVertexArrays(1, &m_quadVAO);
     glGenBuffers(1, &VBO);
+    std::cout << "Generated VAO ID: " << m_quadVAO << std::endl;
+    std::cout << "Generated VBO ID: " << VBO << std::endl;
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     glBindVertexArray(m_quadVAO);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);    
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 }

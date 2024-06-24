@@ -71,7 +71,7 @@
     <None Include="default.frag">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="sprite_transform.vert">
+    <None Include="sprite.vs">
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="sprite.frag">
@@ -112,12 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Sonic.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="C:\Users\Artyom\OneDrive\Pictures\smile_bogdan.jpg">
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="block.png">

@@ -13,10 +13,10 @@ public:
 		const char* geometrySource);
 
 	Shader& Use();
-	void Delete();
-	void SetMatrix4(const char* modelName, glm::mat4& model);
-	void SetVector3f(const char* colorName, glm::vec3& color);
-	void SetInteger(const char* name, int value);
+	void Delete() const;
+	void SetMatrix4(const char* modelName, glm::mat4& model, bool useShader = false);
+	void SetVector3f(const char* colorName, glm::vec3& color) const;
+	void SetInteger(const char* name, int value) const;
 
 private:
 	std::string GetFileContents(const char* fileName);

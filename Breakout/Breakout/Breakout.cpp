@@ -17,6 +17,10 @@
 #include "ResourceManager.h"
 
 void KeyPressedCallBack(GLFWwindow* window, int key, int scanCode, int action, int mode);
+void BufferResizeCallback(GLFWwindow* window, int width, int height);
+void checkGLError(const std::string& location);
+
+Game Breakout(1600, 800);
 
 int main()
 {
@@ -26,7 +30,13 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 800, "Breakout", NULL, NULL);
+    if (!glfwInit())
+    {
+        std::cerr << "Failed to initialize GLFW" << std::endl;
+        return -1;
+    }
+
+    GLFWwindow* window = glfwCreateWindow(1600, 900, "Breakout", NULL, NULL);
 
     if (window == NULL)
     {
@@ -36,14 +46,19 @@ int main()
     }
     glfwMakeContextCurrent(window);
     gladLoadGL();
-    glfwSetKeyCallback(window, KeyPressedCallBack);
+    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+    {
+        std::cout << "Failed to initialize GLAD" << std::endl;
+        return -1;
+    }
 
-    glViewport(0, 0, 800, 800);
+    glfwSetKeyCallback(window, KeyPressedCallBack);
+    glfwSetFramebufferSizeCallback(window, BufferResizeCallback);
+
+    glViewport(0, 0, 1600, 900);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC1_ALPHA);
- 
-    Game Breakout(800, 800);
-    
+     
     Breakout.Init();
 
     // deltaTime variables
@@ -61,8 +76,8 @@ int main()
 
         // Render
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);                    
-        Breakout.Render();        
+        glClear(GL_COLOR_BUFFER_BIT);
+        Breakout.Render();  
 
         glfwSwapBuffers(window);
     }
@@ -80,3 +95,15 @@ void KeyPressedCallBack(GLFWwindow* window, int key, int scanCode, int action, i
         << std::endl;
 }
 
+void BufferResizeCallback(GLFWwindow* window, int width, int height)
+{
+    glViewport(0, 0, width, height);
+}
+
+void checkGLError(const std::string& location)
+{
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        std::cerr << "OpenGL error " << err << " at " << location << std::endl;
+    }
+}
