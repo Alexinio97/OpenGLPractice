@@ -22,6 +22,12 @@
     <Filter Include="Resource Files\Levels">
       <UniqueIdentifier>{4ef406f5-3892-4a6f-a4f0-4de3365ec390}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{47e15dfa-c77e-48a2-bc3f-8973b34f89a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{547b818e-49db-47d5-aca2-e43ae70362d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Breakout.cpp">
@@ -62,6 +68,9 @@
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ball.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,9 @@
     <ClInclude Include="GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Ball.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png">
@@ -121,6 +133,15 @@
       <Filter>Resource Files\Textures</Filter>
     </Image>
     <Image Include="background.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="paddle.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="smile_bogdan.jpg">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="ballTexture.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
   </ItemGroup>

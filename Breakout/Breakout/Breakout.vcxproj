@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Breakout.cpp" />
     <ClCompile Include="EBO.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -154,6 +155,7 @@
     <None Include="sprite.vs" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLevel.h" />
@@ -167,9 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="background.jpg" />
+    <Image Include="ballTexture.png" />
     <Image Include="block.png" />
     <Image Include="block_solid.png" />
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png" />
+    <Image Include="paddle.png" />
+    <Image Include="smile_bogdan.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Standard.lvl" />

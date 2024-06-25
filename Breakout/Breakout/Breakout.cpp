@@ -72,6 +72,7 @@ int main()
         lastFrame = currentFrame;
         glfwPollEvents();
 
+        Breakout.ProcessInput(deltaTime);
         Breakout.Update(deltaTime);
 
         // Render
@@ -93,6 +94,17 @@ void KeyPressedCallBack(GLFWwindow* window, int key, int scanCode, int action, i
 {
     std::cout << "Key pressed: " << key << " Action: " << action << " ScanCode: " << scanCode
         << std::endl;
+
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+
+    if (key >= 0 && key <= 1024)
+    {
+        if (action == GLFW_PRESS)
+            Breakout.Keys[key] = true;
+        else if (action == GLFW_RELEASE)
+            Breakout.Keys[key] = false;
+    }
 }
 
 void BufferResizeCallback(GLFWwindow* window, int width, int height)
