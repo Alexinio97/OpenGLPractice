@@ -67,11 +67,18 @@ void Game::ProcessInput(float deltaTime)
 		{
 			if (Player->Position.x >= 0.0f)
 				Player->Position.x -= velocity;
+
+			if (PlayerBall->IsStuck && PlayerBall->Position.x >= PLAYER_SIZE.x / 2.0f - BALL_RADIUS)
+				PlayerBall->Position.x -= velocity;
+
 		}
 		if (Keys[GLFW_KEY_D])
 		{
 			if (Player->Position.x < m_Width - PLAYER_SIZE.x)
 				Player->Position.x += velocity;
+
+			if (PlayerBall->IsStuck && PlayerBall->Position.x < m_Width - (PLAYER_SIZE.x / 2.0f + BALL_RADIUS))
+				PlayerBall->Position.x += velocity;
 		}
 
 		if (Keys[GLFW_KEY_SPACE])
