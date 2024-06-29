@@ -5,6 +5,7 @@
 #include "SpriteRenderer.h"
 #include "ResourceManager.h"
 #include "Ball.h"
+#include "Collision.h"
 
 SpriteRenderer* Renderer;
 GameObject* Player;
@@ -42,7 +43,7 @@ void Game::Init()
 	ResourceManager::LoadTexture("ballTexture.png", true, "ball");
 	
 	GameLevel levelOne;
-	levelOne.Load("Standard.lvl", m_Width, m_Height / 2);
+	levelOne.Load("0.lvl", m_Width, m_Height / 2);
 	Levels.push_back(levelOne);
 	Level = 0;
 
@@ -56,6 +57,14 @@ void Game::Init()
 void Game::Update(float deltaTime)
 {
 	PlayerBall->Move(deltaTime, m_Width);
+
+	DoCollisions();
+
+	if (PlayerBall->Position.y >= m_Height) // did ball reach bottom edge?
+	{
+		ResetLevel();
+		ResetPlayer();
+	}
 }
 
 void Game::ProcessInput(float deltaTime)
@@ -66,19 +75,21 @@ void Game::ProcessInput(float deltaTime)
 		if (Keys[GLFW_KEY_A])
 		{
 			if (Player->Position.x >= 0.0f)
+			{
 				Player->Position.x -= velocity;
-
-			if (PlayerBall->IsStuck && PlayerBall->Position.x >= PLAYER_SIZE.x / 2.0f - BALL_RADIUS)
-				PlayerBall->Position.x -= velocity;
+				if (PlayerBall->IsStuck)
+					PlayerBall->Position.x -= velocity;
+			}
 
 		}
 		if (Keys[GLFW_KEY_D])
 		{
 			if (Player->Position.x < m_Width - PLAYER_SIZE.x)
+			{
 				Player->Position.x += velocity;
-
-			if (PlayerBall->IsStuck && PlayerBall->Position.x < m_Width - (PLAYER_SIZE.x / 2.0f + BALL_RADIUS))
-				PlayerBall->Position.x += velocity;
+				if (PlayerBall->IsStuck)
+					PlayerBall->Position.x += velocity;
+			}
 		}
 
 		if (Keys[GLFW_KEY_SPACE])
@@ -98,5 +109,79 @@ void Game::Render()
 		Levels[Level].Draw(*Renderer);
 		Player->Draw(*Renderer);
 		PlayerBall->Draw(*Renderer);
+
+		glm::vec2 ballSize = glm::vec2(PlayerBall->Radius * 2);
+		Renderer->DrawDebugRectangle(PlayerBall->Position, ballSize,
+			glm::vec3(1.0f, 4.0f, 0.0f));
 	}
+}
+
+void Game::DoCollisions()
+{
+	for (auto& brick : Levels[Level].Bricks)
+	{
+		if (!brick.Destroyed)
+		{
+			auto collision = Collision::CheckCollision(*PlayerBall, brick);
+			if (std::get<0>(collision))
+			{
+				if (!brick.IsSolid)
+					brick.Destroyed = true;
+
+				Direction dir = std::get<1>(collision);
+				glm::vec2 diff_vector = std::get<2>(collision);
+
+				if (dir == LEFT || dir == RIGHT) // horizontal collision
+				{
+					PlayerBall->Velocity.x = -PlayerBall->Velocity.x; // reverse horizontal velocity
+					// relocate
+					float penetration = PlayerBall->Radius - std::abs(diff_vector.x);
+					if (dir == LEFT)
+						PlayerBall->Position.x += penetration; // move PlayerBall to right
+					else
+						PlayerBall->Position.x -= penetration; // move PlayerBall to left;
+				}
+				else // vertical collision
+				{
+					PlayerBall->Velocity.y = -PlayerBall->Velocity.y; // reverse vertical velocity
+					// relocate
+					float penetration = PlayerBall->Radius - std::abs(diff_vector.y);
+					if (dir == UP)
+						PlayerBall->Position.y -= penetration; // move PlayerBall back up
+					else
+						PlayerBall->Position.y += penetration; // move ball back down
+				}
+				brick.Destroyed = brick.IsSolid ? false : true;
+			}
+		}
+	}
+
+	CollisionTup result = Collision::CheckCollision(*PlayerBall, *Player);
+	if (!PlayerBall->IsStuck && std::get<0>(result))
+	{
+		// check where it hit the board, and change velocity based on where it hit the board
+		float centerBoard = Player->Position.x + Player->Size.x / 2.0f;
+		float distance = (PlayerBall->Position.x + PlayerBall->Radius) - centerBoard;
+		float percentage = distance / (Player->Size.x / 2.0f);
+		// then move accordingly
+		float strength = 2.0f;
+		glm::vec2 oldVelocity = PlayerBall->Velocity;
+		PlayerBall->Velocity.x = INITIAL_BALL_VELOCITY.x * percentage * strength;
+		PlayerBall->Velocity.y = -1.0f * abs(PlayerBall->Velocity.y);
+		PlayerBall->Velocity = glm::normalize(PlayerBall->Velocity) * glm::length(oldVelocity);
+	}
+}
+
+void Game::ResetLevel()
+{
+	auto levelName = std::to_string(Level) + ".lvl";
+	Levels[Level].Load(levelName.c_str(), m_Width, m_Height / 2.0f);
+}
+
+void Game::ResetPlayer()
+{
+	Player->Position = glm::vec2(m_Width / 2.0f - PLAYER_SIZE.x / 2.0f,
+		m_Height - PLAYER_SIZE.y);
+	PlayerBall->Position = Player->Position + glm::vec2(PLAYER_SIZE.x / 2.0f - BALL_RADIUS, -BALL_RADIUS * 2);
+	PlayerBall->IsStuck = true;
 }

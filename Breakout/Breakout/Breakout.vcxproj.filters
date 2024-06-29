@@ -72,6 +72,9 @@
     <ClCompile Include="Ball.cpp">
       <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -121,6 +124,9 @@
     <ClInclude Include="Ball.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png">
@@ -146,7 +152,7 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Standard.lvl">
+    <Text Include="0.lvl">
       <Filter>Resource Files\Levels</Filter>
     </Text>
   </ItemGroup>

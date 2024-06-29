@@ -29,6 +29,11 @@ public:
 	void Update(float deltaTime);	
 	void ProcessInput(float deltaTime);
 	void Render();
+	void DoCollisions();
+
+	// reset
+	void ResetLevel();
+	void ResetPlayer();
 
 public:
 	std::vector<GameLevel> Levels;
