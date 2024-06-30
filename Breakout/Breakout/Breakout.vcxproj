@@ -141,6 +141,8 @@
     <ClCompile Include="GameLevel.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="ParticleGenerator.cpp" />
+    <ClCompile Include="PostProcessor.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -152,6 +154,10 @@
   <ItemGroup>
     <None Include="default.frag" />
     <None Include="default.vert" />
+    <None Include="particle.frag" />
+    <None Include="particle.vert" />
+    <None Include="post_process.frag" />
+    <None Include="post_process.vs" />
     <None Include="sprite.frag" />
     <None Include="sprite.vs" />
   </ItemGroup>
@@ -162,6 +168,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameLevel.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="ParticleGenerator.h" />
+    <ClInclude Include="PostProcessor.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="SpriteRenderer.h" />

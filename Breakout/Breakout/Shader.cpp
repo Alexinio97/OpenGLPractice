@@ -87,14 +87,33 @@ void Shader::SetMatrix4(const char* modelName, glm::mat4& model, bool useShader)
     glUniformMatrix4fv(glGetUniformLocation(ShaderProgramId, modelName), 1, GL_FALSE, &model[0][0]);
 }
 
+void Shader::SetVector2f(const char* name, glm::vec2& offset) const
+{
+    glUniform2f(glGetUniformLocation(ShaderProgramId, name),
+        offset.x, offset.y);
+}
+
 void Shader::SetVector3f(const char* colorName, glm::vec3& color) const
 {
     glUniform3f(glGetUniformLocation(ShaderProgramId, colorName), color.x, color.y, color.z);
 }
 
-void Shader::SetInteger(const char* name, int value) const
+void Shader::SetVector4f(const char* name, glm::vec4& value) const
 {
+    glUniform4f(glGetUniformLocation(ShaderProgramId, name), value.x,
+        value.y, value.z, value.w);
+}
+
+void Shader::SetInteger(const char* name, int value, bool useShader)
+{
+    if (useShader)
+        Use();
     glUniform1i(glGetUniformLocation(ShaderProgramId, name), value);
+}
+
+void Shader::SetFloat(const char* name, float value)
+{
+    glUniform1f(glGetUniformLocation(ShaderProgramId, name), value);
 }
 
 // private methods

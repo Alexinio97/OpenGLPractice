@@ -20,7 +20,7 @@ void KeyPressedCallBack(GLFWwindow* window, int key, int scanCode, int action, i
 void BufferResizeCallback(GLFWwindow* window, int width, int height);
 void checkGLError(const std::string& location);
 
-Game Breakout(1600, 800);
+Game Breakout(1600, 900);
 
 int main()
 {
