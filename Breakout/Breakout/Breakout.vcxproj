@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>E:\Dev\OpenGLPractice\OpenGL\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>E:\Dev\OpenGLPractice\OpenGL\includes;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Dev\OpenGLPractice\irrKlang\lib\Winx64-visualStudio;E:\Dev\OpenGLPractice\OpenGL\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Dev\OpenGLPractice\irrKlang\include;E:\Dev\OpenGLPractice\OpenGL\includes;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -143,8 +143,10 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="ParticleGenerator.cpp" />
     <ClCompile Include="PostProcessor.cpp" />
+    <ClCompile Include="PowerUp.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Stb.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -170,8 +172,10 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="ParticleGenerator.h" />
     <ClInclude Include="PostProcessor.h" />
+    <ClInclude Include="PowerUp.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="VAO.h" />
@@ -184,10 +188,19 @@
     <Image Include="block_solid.png" />
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png" />
     <Image Include="paddle.png" />
+    <Image Include="powerup_chaos.png" />
+    <Image Include="powerup_confuse.png" />
+    <Image Include="powerup_increase.png" />
+    <Image Include="powerup_passthrough.png" />
+    <Image Include="powerup_speed.png" />
+    <Image Include="powerup_sticky.png" />
     <Image Include="smile_bogdan.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="0.lvl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="SFX\breakout.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

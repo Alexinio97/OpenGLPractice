@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "GameLevel.h"
+#include "PowerUp.h"
 
 // forward declaration
 class SpriteRenderer;
@@ -31,12 +32,16 @@ public:
 	void Render();
 	void DoCollisions();
 
+	void SpawnPowerUps(GameObject& block);
+	void UpdatePowerUps(float dt);
+
 	// reset
 	void ResetLevel();
 	void ResetPlayer();
 
 public:
 	std::vector<GameLevel> Levels;
+	std::vector<PowerUp> PowerUps;
 	unsigned int Level;
 	GameState GameState;
 	bool Keys[1024];

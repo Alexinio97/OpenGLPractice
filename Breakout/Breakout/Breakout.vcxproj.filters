@@ -34,6 +34,12 @@
     <Filter Include="Resource Files\Shaders\Particle">
       <UniqueIdentifier>{7ba919a4-df92-46d9-9293-ceb1ca3a4104}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Powerups">
+      <UniqueIdentifier>{479318ae-225e-4194-806e-dda40ad4f879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\SFX">
+      <UniqueIdentifier>{f7d1f9c6-0a39-4141-a11e-4d1aeae281e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Breakout.cpp">
@@ -85,6 +91,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PostProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -157,6 +169,12 @@
     <ClInclude Include="PostProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\Artyom\OneDrive\Pictures\img.png">
@@ -180,10 +198,33 @@
     <Image Include="ballTexture.png">
       <Filter>Resource Files\Textures</Filter>
     </Image>
+    <Image Include="powerup_chaos.png">
+      <Filter>Resource Files\Powerups</Filter>
+    </Image>
+    <Image Include="powerup_confuse.png">
+      <Filter>Resource Files\Powerups</Filter>
+    </Image>
+    <Image Include="powerup_increase.png">
+      <Filter>Resource Files\Powerups</Filter>
+    </Image>
+    <Image Include="powerup_passthrough.png">
+      <Filter>Resource Files\Powerups</Filter>
+    </Image>
+    <Image Include="powerup_speed.png">
+      <Filter>Resource Files\Powerups</Filter>
+    </Image>
+    <Image Include="powerup_sticky.png">
+      <Filter>Resource Files\Powerups</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="0.lvl">
       <Filter>Resource Files\Levels</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="SFX\breakout.mp3">
+      <Filter>Resource Files\SFX</Filter>
+    </Media>
   </ItemGroup>
 </Project>

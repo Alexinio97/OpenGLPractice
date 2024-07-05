@@ -11,6 +11,7 @@ class Ball :
 public:
     bool IsStuck;
     float Radius;
+    bool Sticky, PassThrough;
 
 public:
     Ball() = default;
